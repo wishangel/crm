@@ -40,6 +40,7 @@ class CustomersController < ApplicationController
     # @customer = Customer.find(params[:id])
     @comments = @customer.comments
     # @comments = Comment.where(customer_id: params[:id].to_i)
+    @users = User.all
   end
 
   def destroy
@@ -58,8 +59,10 @@ class CustomersController < ApplicationController
   end
 
   
+  private 
 
   def customer_params
     params.require(:customer).permit(:family_name,:given_name,:email, :company_id)
   end
+
 end

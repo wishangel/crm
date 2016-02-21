@@ -15,8 +15,18 @@
   </div>
   
   <div class="form-field">
-    <%= f.label :email, "名" %><br />
-    <%= f.email_field :email, autofocus: true, class: "form-control" %>
+    <%= f.label :email, "電子メール" %><br />
+    <%= f.email_field :email, class: "form-control" %>
+  </div>
+
+  <div class="form-field">
+    <%= f.label :image_url, "サムネイルURL" %><br />
+    <%= f.text_field :image_url, class: "form-control" %>
+
+  </div>
+
+  <div clasee="form-field">
+    <%= image_tag @user.image_url, :size => '45x45', class: 'img-responsive' %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

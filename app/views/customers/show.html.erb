@@ -11,6 +11,29 @@
 	</div>
 </div>
 
+<div class="row">
+  <div class="col-lg-12">
+    <h2>対応履歴</h2>
+    <% @comments.each do |comment| %>
+    <div class="media-body">
+      <p>
+        <%= comment.body %>
+      </p>
+      <p class="text-muted">
+      	投稿者：<%= @users.find(comment.user_id).full_name %>
+      </p>
+      <p class="text-muted">
+      	<%= image_tag @users.find(comment.user_id).image_url, :size => '45x45'%>
+      </p>
+		<p class="text-muted">
+    		投稿日時：<%= comment.created_at.strftime('%Y/%m/%d %H:%M') %>
+    		<%= link_to "削除する", comment_path(comment), method: :delete %>
+  		</p>
+     </div>
+    <% end %>
+  </div>
+</div>
+</br>
 <div class = "row">
 	<div class ="col-lg-12">
 		<%= form_for(@comment, url: { controller: :comments, action: :create}) do |f| %>
@@ -18,18 +41,9 @@
 			<%= f.label :body , '対応内容' %><br>
         	<%= f.text_area :body, class: "form-control" %>
       	</div>
+      		<%= f.hidden_field :user_id, value: current_user.id %>
       		<%= f.hidden_field :customer_id, value: @customer.id %>
       		<%= f.submit %>
     	<% end %>
 	</div>
-</div>
-<div class="row">
-  <div class="col-lg-12">
-    <h2>対応履歴</h2>
-    <% @comments.each do |comment| %>
-      <p>
-        <%= comment.body %>
-      </p>
-    <% end %>
-  </div>
 </div>
