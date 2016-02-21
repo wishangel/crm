@@ -9,6 +9,7 @@ class CustomersController < ApplicationController
   def new
     @customer = Customer.new
     # @companies = Company.all
+    @comment = Comment.new
   end
 
   def create
@@ -35,7 +36,10 @@ class CustomersController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
     # @customer = Customer.find(params[:id])
+    @comments = @customer.comments
+    # @comments = Comment.where(customer_id: params[:id].to_i)
   end
 
   def destroy

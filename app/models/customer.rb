@@ -6,6 +6,7 @@ class Customer < ActiveRecord::Base
 	validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}
 
 	belongs_to :company
+	has_many :comments
 
 	def full_name
 		full_name = family_name + given_name
